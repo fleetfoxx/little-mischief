@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbup31tqwpi7a"]
+
+[ext_resource type="Script" uid="uid://dxiwdqj7qbq6x" path="res://Scenes/Player/player_body.gd" id="1_jm3vh"]
+[ext_resource type="Script" uid="uid://b583rseckb8ty" path="res://Scenes/Player/hud.gd" id="2_x1b6y"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jm3vh"]
+radius = 0.1
+height = 0.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jm3vh"]
+radius = 0.1
+height = 0.5
+
+[node name="PlayerBody" type="CharacterBody3D" node_paths=PackedStringArray("_camera")]
+script = ExtResource("1_jm3vh")
+_mouseSensitivity = 2
+_walkSpeed = 1
+_walkAcceleration = 50
+_jumpHeight = 5
+_pushForce = 50
+_camera = NodePath("Camera3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("CapsuleMesh_jm3vh")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+current = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("CapsuleShape3D_jm3vh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("_pointsLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_x1b6y")
+_pointsLabel = NodePath("Points")
+
+[node name="Points" type="Label" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0"

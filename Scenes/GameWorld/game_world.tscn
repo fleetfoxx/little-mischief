@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://c7u34p4e5uai4"]
+
+[ext_resource type="Script" uid="uid://dps2ysk3c8c4s" path="res://Scenes/GameWorld/game_world.gd" id="1_oymyw"]
+[ext_resource type="PackedScene" uid="uid://cb1bksbfdye6f" path="res://Scenes/Bedroom/bedroom.tscn" id="2_klhad"]
+[ext_resource type="PackedScene" uid="uid://bbup31tqwpi7a" path="res://Scenes/Player/player_body.tscn" id="3_onrba"]
+[ext_resource type="PackedScene" uid="uid://rf7bupb1ioc0" path="res://Scenes/Props/toy_block.tscn" id="4_onrba"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_klhad"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_onrba"]
+sky_material = SubResource("ProceduralSkyMaterial_klhad")
+
+[sub_resource type="Environment" id="Environment_2qgu6"]
+background_mode = 2
+sky = SubResource("Sky_onrba")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="GameWorld" type="Node3D"]
+script = ExtResource("1_oymyw")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2qgu6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="PlayerBody" parent="." instance=ExtResource("3_onrba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03292, 0, 0.621037)
+
+[node name="Blocks" type="Node3D" parent="."]
+transform = Transform3D(-0.616541, 0, -0.787323, 0, 1, 0, 0.787323, 0, -0.616541, 0.501351, 0, -0.544836)
+
+[node name="ToyBlock" parent="Blocks" instance=ExtResource("4_onrba")]
+transform = Transform3D(0.999094, 0, 0.0425557, 0, 1, 0, -0.0425557, 0, 0.999094, 0.000170425, 0, 0.0719302)
+
+[node name="ToyBlock2" parent="Blocks" instance=ExtResource("4_onrba")]
+transform = Transform3D(0.952364, 0, 0.304964, 0, 1, 0, -0.304964, 0, 0.952364, -0.00599205, 0.115911, -0.0100053)
+
+[node name="ToyBlock3" parent="Blocks" instance=ExtResource("4_onrba")]
+transform = Transform3D(0.951562, 0, -0.307456, 0, 1, 0, 0.307456, 0, 0.951562, 0.00385635, 0, -0.0604638)
+
+[node name="Bedroom" parent="." instance=ExtResource("2_klhad")]

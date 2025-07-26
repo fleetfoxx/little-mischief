@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://cb1bksbfdye6f"]
+
+[ext_resource type="PackedScene" uid="uid://c2bvieqpfhfmn" path="res://Scenes/Bedroom/bunk-bed.glb" id="1_6g5cc"]
+[ext_resource type="PackedScene" uid="uid://cgovh2fiuk020" path="res://Scenes/Bedroom/dresser.glb" id="2_40pll"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6g5cc"]
+size = Vector3(4, 0.226074, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_klhad"]
+cull_mode = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_6g5cc"]
+material = SubResource("StandardMaterial3D_klhad")
+size = Vector3(4, 3, 6)
+
+[node name="Bedroom" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.113037, 0)
+shape = SubResource("BoxShape3D_6g5cc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+mesh = SubResource("BoxMesh_6g5cc")
+metadata/_edit_lock_ = true
+
+[node name="BunkBed" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.924611, 0, 1.76464)
+metadata/_edit_group_ = true
+
+[node name="bunk-bed" parent="BunkBed" instance=ExtResource("1_6g5cc")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.882536, 0)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -0.1)
+metadata/_edit_group_ = true
+
+[node name="dresser2" parent="StaticBody3D2" instance=ExtResource("2_40pll")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://rf7bupb1ioc0"]
+
+[ext_resource type="Script" uid="uid://oqug2kvf5wr5" path="res://Scenes/Props/toy_block.gd" id="1_nnx3v"]
+[ext_resource type="Texture2D" uid="uid://c5w5debs4ao03" path="res://icon.svg" id="2_5tfff"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nnx3v"]
+albedo_color = Color(0, 0.596078, 0.705882, 1)
+albedo_texture = ExtResource("2_5tfff")
+
+[sub_resource type="BoxMesh" id="BoxMesh_83sgb"]
+material = SubResource("StandardMaterial3D_nnx3v")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_83sgb"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="ToyBlock" type="RigidBody3D"]
+script = ExtResource("1_nnx3v")
+_pointsOnDisplace = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("BoxMesh_83sgb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("BoxShape3D_83sgb")
