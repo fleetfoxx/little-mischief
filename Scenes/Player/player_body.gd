@@ -1,3 +1,4 @@
+class_name PlayerBody
 extends CharacterBody3D
 
 @export_category("Movement")
