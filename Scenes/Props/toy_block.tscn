@@ -14,7 +14,9 @@ size = Vector3(0.1, 0.1, 0.1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_83sgb"]
 size = Vector3(0.1, 0.1, 0.1)
 
-[node name="ToyBlock" type="RigidBody3D"]
+[node name="ToyBlock" type="RigidBody3D" groups=["grabbable"]]
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_nnx3v")
 _pointsOnDisplace = 5
 

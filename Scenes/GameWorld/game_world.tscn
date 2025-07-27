@@ -15,6 +15,7 @@ sky_material = SubResource("ProceduralSkyMaterial_klhad")
 background_mode = 2
 sky = SubResource("Sky_onrba")
 tonemap_mode = 2
+ssao_enabled = true
 glow_enabled = true
 
 [node name="GameWorld" type="Node3D" node_paths=PackedStringArray("_player", "_spawn")]

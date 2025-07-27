@@ -4,7 +4,6 @@ extends Node3D
 @export var _spawn: Marker3D;
 
 func _ready():
-  Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
   teleportPlayerToSpawn();
 
 func _unhandled_input(event):

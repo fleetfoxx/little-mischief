@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dubje2xaf2uvh"]
+
+[ext_resource type="Script" uid="uid://b2yj4x8mb2for" path="res://Scenes/Props/TrainSet/train_car.gd" id="1_hp085"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yi7v1"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yi7v1"]
+material = SubResource("StandardMaterial3D_yi7v1")
+size = Vector3(0.1, 0.1, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yi7v1"]
+size = Vector3(0.1, 0.1, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gruuj"]
+size = Vector3(0.128906, 0.125977, 0.217773)
+
+[node name="TrainCar" type="RigidBody3D" node_paths=PackedStringArray("_crashDetector") groups=["grabbable"]]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_hp085")
+_crashDetector = NodePath("CrashDetector")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0601552, 0)
+mesh = SubResource("BoxMesh_yi7v1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
+shape = SubResource("BoxShape3D_yi7v1")
+
+[node name="CrashDetector" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CrashDetector"]
+transform = Transform3D(1, 0, -8.19564e-08, 0, 1, 0, 8.19564e-08, 0, 1, 0, 0.0698242, 0)
+shape = SubResource("BoxShape3D_gruuj")
