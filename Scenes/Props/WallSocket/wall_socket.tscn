@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://blxqf78hh71nt"]
+
+[ext_resource type="PackedScene" uid="uid://3k2y0b8uiron" path="res://Scenes/Bedroom/socket.glb" id="1_xex4s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uxllp"]
+size = Vector3(0.0292969, 0.185791, 0.12915)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xex4s"]
+direction = Vector3(-1, 0, 0)
+initial_velocity_max = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uxllp"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_044lc"]
+material = SubResource("StandardMaterial3D_uxllp")
+radius = 0.01
+height = 0.02
+
+[node name="WallSocket" type="Area3D"]
+
+[node name="socket2" parent="." instance=ExtResource("1_xex4s")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_uxllp")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000311062, 0, 0)
+emitting = false
+amount = 16
+explosiveness = 0.81
+randomness = 0.84
+process_material = SubResource("ParticleProcessMaterial_xex4s")
+draw_pass_1 = SubResource("SphereMesh_044lc")

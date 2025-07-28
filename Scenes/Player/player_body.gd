@@ -71,7 +71,6 @@ func tryDropObject(event: InputEvent):
   if (_heldObject is RigidBody3D):
     # enable player collision
     _heldObject.set_collision_mask_value(2, true);
-    _heldObject.set_collision_mask_value(3, true);
     _heldObject.freeze = false;
 
   if (_heldObject.has_method("drop")):
@@ -98,9 +97,8 @@ func tryGrabObject(event: InputEvent):
   if (_heldObject is RigidBody3D):
     # disable player collision
     _heldObject.set_collision_mask_value(2, false);
-    # disable interactive layer
-    _heldObject.set_collision_layer_value(3, false);
     _heldObject.freeze = true;
+    # TODO: disable
 
   if (_heldObject.has_method("grab")):
     _heldObject.grab();

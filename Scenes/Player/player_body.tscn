@@ -46,7 +46,7 @@ shape = SubResource("CapsuleShape3D_jm3vh")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HUD" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("_pointsLabel")]
+[node name="HUD" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("_pointsLabel", "_chainLabel", "_chainMultLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,6 +56,29 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2_x1b6y")
 _pointsLabel = NodePath("Points")
+_chainLabel = NodePath("BoxContainer/CurrentChain")
+_chainMultLabel = NodePath("BoxContainer/CurrentChainCalc")
+
+[node name="BoxContainer" type="BoxContainer" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+alignment = 1
+vertical = true
+
+[node name="CurrentChainCalc" type="Label" parent="CanvasLayer/HUD/BoxContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrentChain" type="Label" parent="CanvasLayer/HUD/BoxContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Points" type="Label" parent="CanvasLayer/HUD"]
 layout_mode = 1

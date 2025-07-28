@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmfgjfdlp3mtj"]
+
+[ext_resource type="PackedScene" uid="uid://bksny6gacvc6w" path="res://Scenes/Bedroom/window.glb" id="1_skwbm"]
+
+[node name="BedroomWindow" type="Node3D"]
+
+[node name="window2" parent="." instance=ExtResource("1_skwbm")]
