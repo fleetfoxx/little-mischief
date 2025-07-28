@@ -11,6 +11,8 @@ func _ready():
 
 
 func bodyEntered(body: Node3D):
+  if (body == self): return;
+  print("crashed into %s" % body.name);
   crashed.emit();
 
 

@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://cwg76s0rbh4o6"]
+
+[ext_resource type="PackedScene" uid="uid://5bnpkfn523cf" path="res://Scenes/Props/Cup/cup.glb" id="1_fo3va"]
+[ext_resource type="Script" uid="uid://bdcjum7c2tkgu" path="res://Scenes/Props/Cup/spillable_cup.gd" id="1_mpvmo"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fo3va"]
+height = 0.200653
+radius = 0.0913086
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mpvmo"]
+direction = Vector3(0, 1, 0)
+initial_velocity_max = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mpvmo"]
+albedo_color = Color(0, 0.490196, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_bg15b"]
+material = SubResource("StandardMaterial3D_mpvmo")
+radius = 0.01
+height = 0.02
+
+[node name="SpillableCup" type="RigidBody3D" node_paths=PackedStringArray("_waterParticles") groups=["grabbable"]]
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("1_mpvmo")
+_waterParticles = NodePath("WaterParticles")
+_pointsOnDisplace = 3
+
+[node name="cup2" parent="." instance=ExtResource("1_fo3va")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.100876, 0)
+shape = SubResource("CylinderShape3D_fo3va")
+
+[node name="WaterParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16896, 0)
+emitting = false
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_mpvmo")
+draw_pass_1 = SubResource("SphereMesh_bg15b")
+
+[editable path="cup2"]

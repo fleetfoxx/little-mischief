@@ -25,6 +25,6 @@ texture = ExtResource("1_yi7v1")
 curve = SubResource("Curve3D_yi7v1")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.994387, 0, -0.105786, 0, 1, 0, 0.105786, 0, 0.994387, -0.577658, 0, -0.00213947)
+transform = Transform3D(0.994388, 0, -0.105777, 0, 1, 0, 0.105777, 0, 0.994388, -0.577658, 0, -0.00213947)
 
 [node name="TrainCar" parent="Path3D/PathFollow3D" instance=ExtResource("3_1p0l4")]

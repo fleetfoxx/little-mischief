@@ -17,7 +17,7 @@ size = Vector3(0.128906, 0.125977, 0.217773)
 
 [node name="TrainCar" type="RigidBody3D" node_paths=PackedStringArray("_crashDetector") groups=["grabbable"]]
 collision_layer = 4
-collision_mask = 7
+collision_mask = 15
 script = ExtResource("1_hp085")
 _crashDetector = NodePath("CrashDetector")
 
@@ -31,7 +31,7 @@ shape = SubResource("BoxShape3D_yi7v1")
 
 [node name="CrashDetector" type="Area3D" parent="."]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 6
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CrashDetector"]
 transform = Transform3D(1, 0, -8.19564e-08, 0, 1, 0, 8.19564e-08, 0, 1, 0, 0.0698242, 0)

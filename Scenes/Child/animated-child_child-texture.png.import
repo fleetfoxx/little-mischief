@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://c4sulpyrwvvvn"
+path.s3tc="res://.godot/imported/animated-child_child-texture.png-011467a50ce74fb473254c6d1b1cbc18.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "6f1229e2d307114b8fa88136b7ff2857"
+}
+
+[deps]
+
+source_file="res://Scenes/Child/animated-child_child-texture.png"
+dest_files=["res://.godot/imported/animated-child_child-texture.png-011467a50ce74fb473254c6d1b1cbc18.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

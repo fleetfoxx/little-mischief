@@ -7,6 +7,7 @@ extends CharacterBody3D
 @export var _walkAcceleration := 100;
 @export var _jumpHeight := 1;
 @export var _pushForce := 500;
+@export var _punchForce := 500;
 
 @export var _camera: Camera3D;
 
@@ -42,12 +43,13 @@ func _unhandled_input(event: InputEvent):
 
   tryDropObject(event);
   tryGrabObject(event);
+  tryPunchObject(event);
 
 
 func _physics_process(delta):
   velocity = walk(delta) + gravity(delta) + jump(delta)
   var collided = move_and_slide();
-  
+
   if (collided):
     for i in range(get_slide_collision_count()):
       var collision = get_slide_collision(i);
@@ -69,6 +71,7 @@ func tryDropObject(event: InputEvent):
   if (_heldObject is RigidBody3D):
     # enable player collision
     _heldObject.set_collision_mask_value(2, true);
+    _heldObject.set_collision_mask_value(3, true);
     _heldObject.freeze = false;
 
   if (_heldObject.has_method("drop")):
@@ -95,6 +98,8 @@ func tryGrabObject(event: InputEvent):
   if (_heldObject is RigidBody3D):
     # disable player collision
     _heldObject.set_collision_mask_value(2, false);
+    # disable interactive layer
+    _heldObject.set_collision_layer_value(3, false);
     _heldObject.freeze = true;
 
   if (_heldObject.has_method("grab")):
@@ -102,6 +107,27 @@ func tryGrabObject(event: InputEvent):
 
   _holdPoint.add_child(_heldObject);
   _heldObject.position = Vector3.ZERO;
+
+
+func tryPunchObject(event: InputEvent):
+  if (!event.is_action_pressed("action-left")): return ;
+  var collision = _selectionRay.get_collider();
+  if (collision == null):
+    tryPunchHeldObject(event);
+  else:
+    print("punching %s" % collision.name);
+    if (collision is RigidBody3D):
+      var normal = _selectionRay.get_collision_normal();
+      collision.apply_force(normal * -_punchForce);
+    if (collision.has_method("punch")):
+      collision.punch();
+
+
+func tryPunchHeldObject(event: InputEvent):
+  if (!event.is_action_pressed("action-left")): return ;
+  if (_heldObject == null): return ;
+  if (_heldObject.has_method("punch")):
+    _heldObject.punch();
 
 
 func rotateCamera():

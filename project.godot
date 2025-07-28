@@ -76,3 +76,7 @@ action-right={
 3d_physics/layer_2="player"
 3d_physics/layer_3="displaceable"
 3d_physics/layer_4="furniture"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"

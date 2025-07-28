@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://cohu3gtt7vbnd"]
+
+[ext_resource type="Script" uid="uid://lqihjt68rrkj" path="res://Scenes/Bedroom/tv.gd" id="1_16fc6"]
+[ext_resource type="PackedScene" uid="uid://cvxwt8i3ja3hy" path="res://Scenes/Bedroom/tv.glb" id="1_de3s6"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_01rub"]
+data = PackedVector3Array(-0.2774, -0.0023, 0.3338, -0.2774, 0.5976, -0.3338, -0.2774, 0.5976, 0.3338, -0.2774, -0.0023, 0.3338, -0.2774, -0.0023, -0.3338, -0.2774, 0.5976, -0.3338, 0, -0.0023, -0.3338, 0.2774, 0.4726, -0.2731, 0, 0.5976, -0.3338, 0, -0.0023, -0.3338, 0.2774, -0.0023, -0.2731, 0.2774, 0.4726, -0.2731, 0.2774, -0.0023, -0.2731, 0.2774, 0.4726, 0.2731, 0.2774, 0.4726, -0.2731, 0.2774, -0.0023, -0.2731, 0.2774, -0.0023, 0.2731, 0.2774, 0.4726, 0.2731, 0, -0.0023, 0.3338, -0.2774, 0.5976, 0.3338, 0, 0.5976, 0.3338, 0, -0.0023, 0.3338, -0.2774, -0.0023, 0.3338, -0.2774, 0.5976, 0.3338, 0, -0.0023, -0.3338, 0.2774, -0.0023, 0.2731, 0.2774, -0.0023, -0.2731, 0, -0.0023, -0.3338, 0, -0.0023, 0.3338, 0.2774, -0.0023, 0.2731, -0.2774, -0.0023, -0.3338, 0, -0.0023, 0.3338, 0, -0.0023, -0.3338, -0.2774, -0.0023, -0.3338, -0.2774, -0.0023, 0.3338, 0, -0.0023, 0.3338, 0, 0.5976, -0.3338, -0.2774, 0.5976, 0.3338, -0.2774, 0.5976, -0.3338, 0, 0.5976, -0.3338, 0, 0.5976, 0.3338, -0.2774, 0.5976, 0.3338, 0.2774, 0.4726, -0.2731, 0, 0.5976, 0.3338, 0, 0.5976, -0.3338, 0.2774, 0.4726, -0.2731, 0.2774, 0.4726, 0.2731, 0, 0.5976, 0.3338, 0.2774, -0.0023, 0.2731, 0, 0.5976, 0.3338, 0.2774, 0.4726, 0.2731, 0.2774, -0.0023, 0.2731, 0, -0.0023, 0.3338, 0, 0.5976, 0.3338, -0.2774, -0.0023, -0.3338, 0, 0.5976, -0.3338, -0.2774, 0.5976, -0.3338, -0.2774, -0.0023, -0.3338, 0, -0.0023, -0.3338, 0, 0.5976, -0.3338)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_16fc6"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_16fc6"]
+material = SubResource("StandardMaterial3D_16fc6")
+size = Vector2(0.595, 0.525)
+
+[node name="TV" type="StaticBody3D" node_paths=PackedStringArray("_screenMesh")]
+collision_layer = 8
+script = ExtResource("1_16fc6")
+_screenMesh = NodePath("ScreenMesh")
+metadata/_edit_group_ = true
+
+[node name="tv2" parent="." instance=ExtResource("1_de3s6")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConcavePolygonShape3D_01rub")
+
+[node name="ScreenMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.47035e-08, 0, -1, 0, 1, 0, 1, 0, -4.47035e-08, -0.284393, 0.3, 0.000463108)
+mesh = SubResource("QuadMesh_16fc6")
