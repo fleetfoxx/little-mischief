@@ -16,6 +16,7 @@ func _process(delta):
     _pathFollow.progress_ratio += _speed * delta;
 
 func handleCrashed():
+  if (_crashed): return ;
   print("Crashed!");
   _crashed = true;
-  GameStateManager.addPoints(_pointsPerCrash);
+  GameStateManager.addPoints(_pointsPerCrash, "Derailed");

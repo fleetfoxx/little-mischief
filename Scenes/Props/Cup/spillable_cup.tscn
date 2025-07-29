@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwg76s0rbh4o6"]
+[gd_scene load_steps=8 format=3 uid="uid://cwg76s0rbh4o6"]
 
 [ext_resource type="PackedScene" uid="uid://5bnpkfn523cf" path="res://Scenes/Props/Cup/cup.glb" id="1_fo3va"]
 [ext_resource type="Script" uid="uid://bdcjum7c2tkgu" path="res://Scenes/Props/Cup/spillable_cup.gd" id="1_mpvmo"]
@@ -9,7 +9,7 @@ radius = 0.0913086
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mpvmo"]
 direction = Vector3(0, 1, 0)
-initial_velocity_max = 2.0
+initial_velocity_max = 3.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mpvmo"]
 albedo_color = Color(0, 0.490196, 1, 1)
@@ -18,6 +18,8 @@ albedo_color = Color(0, 0.490196, 1, 1)
 material = SubResource("StandardMaterial3D_mpvmo")
 radius = 0.01
 height = 0.02
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mpvmo"]
 
 [node name="SpillableCup" type="RigidBody3D" node_paths=PackedStringArray("_waterParticles") groups=["grabbable"]]
 collision_layer = 4
@@ -38,5 +40,12 @@ emitting = false
 amount = 30
 process_material = SubResource("ParticleProcessMaterial_mpvmo")
 draw_pass_1 = SubResource("SphereMesh_bg15b")
+
+[node name="WaterRange" type="Area3D" parent="."]
+collision_layer = 128
+collision_mask = 96
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WaterRange"]
+shape = SubResource("SphereShape3D_mpvmo")
 
 [editable path="cup2"]

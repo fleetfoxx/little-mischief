@@ -2,6 +2,11 @@ extends DisplaceableObject
 
 @export var _waterParticles: GPUParticles3D;
 
+func _ready():
+  super();
+  _sourceName = "Spill";
+
+
 func grab():
   _waterParticles.emitting = true;
 

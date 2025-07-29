@@ -16,9 +16,9 @@ func _ready():
   game_state_changed.emit(_gameState);
 
 
-func addPoints(amt: int):
+func addPoints(amt: int, source: String):
   # _gameState.set("points", _gameState.get("points") + amt);
-  _gameState.currentChain.append(PointsEvent.new(amt));
+  _gameState.currentChain.append(PointsEvent.new(amt, source));
   game_state_changed.emit(_gameState);
   _chainTimer.start(_timeToCombo);
 

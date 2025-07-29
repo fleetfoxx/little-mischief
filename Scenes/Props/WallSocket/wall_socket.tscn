@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://blxqf78hh71nt"]
+[gd_scene load_steps=8 format=3 uid="uid://blxqf78hh71nt"]
 
+[ext_resource type="Script" uid="uid://bfgpa56fpg002" path="res://Scenes/Props/WallSocket/wall_socket.gd" id="1_uxllp"]
 [ext_resource type="PackedScene" uid="uid://3k2y0b8uiron" path="res://Scenes/Bedroom/socket.glb" id="1_xex4s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uxllp"]
@@ -19,18 +20,34 @@ material = SubResource("StandardMaterial3D_uxllp")
 radius = 0.01
 height = 0.02
 
-[node name="WallSocket" type="Area3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_044lc"]
+size = Vector3(0.5, 1, 1)
+
+[node name="WallSocket" type="Area3D" node_paths=PackedStringArray("_sparkArea", "_sparkParticles") groups=["ignition-source"]]
+collision_layer = 64
+collision_mask = 128
+script = ExtResource("1_uxllp")
+_sparkArea = NodePath("SparkArea")
+_sparkParticles = NodePath("SparkParticles")
 
 [node name="socket2" parent="." instance=ExtResource("1_xex4s")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_uxllp")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="SparkParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000311062, 0, 0)
-emitting = false
 amount = 16
 explosiveness = 0.81
 randomness = 0.84
 process_material = SubResource("ParticleProcessMaterial_xex4s")
 draw_pass_1 = SubResource("SphereMesh_044lc")
+
+[node name="SparkArea" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SparkArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0)
+shape = SubResource("BoxShape3D_044lc")
+debug_color = Color(0.671141, 0.508701, 0, 0.42)

@@ -5,6 +5,7 @@ extends RigidBody3D
 
 var _initialPosition := Vector3.ZERO;
 var _isDisplaced := false;
+var _sourceName := "Object";
 
 
 func _ready():
@@ -26,7 +27,7 @@ func sleepingStateChanged():
 func displace():
   print("displaced! adding %d points" % _pointsOnDisplace);
   _isDisplaced = true;
-  GameStateManager.addPoints(_pointsOnDisplace);
+  GameStateManager.addPoints(_pointsOnDisplace, _sourceName);
 
 
 func grab():

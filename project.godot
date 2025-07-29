@@ -26,6 +26,8 @@ project/assembly_name="Little Mischief"
 [global_group]
 
 grabbable=""
+ignition-source=""
+flammable=""
 
 [input]
 
@@ -76,6 +78,10 @@ action-right={
 3d_physics/layer_2="player"
 3d_physics/layer_3="displaceable"
 3d_physics/layer_4="furniture"
+3d_physics/layer_5="ignition-source"
+3d_physics/layer_6="flammable"
+3d_physics/layer_7="wettable"
+3d_physics/layer_8="wet"
 
 [physics]
 
