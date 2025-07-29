@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://djdqllhut8ye3"]
+
+[ext_resource type="FontFile" uid="uid://cusnob1vxitev" path="res://Fonts/Fiolex_Mephisto.ttf" id="1_3nivq"]
+
+[resource]
+default_font = ExtResource("1_3nivq")
+default_font_size = 42
+Label/colors/font_outline_color = Color(0.14902, 0.196078, 0.219608, 1)
+Label/constants/outline_size = 16
