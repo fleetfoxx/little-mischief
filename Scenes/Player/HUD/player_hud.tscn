@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dnj53yv7fyign" path="res://Scenes/Player/HUD/lil-guy-bust.png" id="6_g1klr"]
 [ext_resource type="Texture2D" uid="uid://bqt50jttdkg4d" path="res://Scenes/Player/HUD/lil-guy-frame-bottom.png" id="7_skbyo"]
 
-[node name="HUD" type="Control" node_paths=PackedStringArray("_pointsLabel", "_chainLabel", "_chainMultLabel")]
+[node name="HUD" type="Control" node_paths=PackedStringArray("_pointsLabel", "_chainLabel", "_chainMultLabel", "_countdownLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,6 +23,7 @@ script = ExtResource("1_nxght")
 _pointsLabel = NodePath("BoxContainer2/Points")
 _chainLabel = NodePath("BoxContainer/CurrentChain")
 _chainMultLabel = NodePath("BoxContainer/CurrentChainCalc")
+_countdownLabel = NodePath("BoxContainer2/Countdown")
 
 [node name="BoxContainer2" type="BoxContainer" parent="."]
 layout_mode = 1
@@ -114,6 +115,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 text = "123"
+
+[node name="Countdown" type="Label" parent="BoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "00:00"
 
 [node name="BoxContainer" type="BoxContainer" parent="."]
 layout_mode = 1

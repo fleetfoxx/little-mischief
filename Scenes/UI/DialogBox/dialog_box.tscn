@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://cir2amo1trdnu"]
+
+[ext_resource type="Script" uid="uid://r5r1gjdk6rab" path="res://Scenes/UI/DialogBox/dialog_box.gd" id="1_4lyak"]
+
+[node name="DialogBox" type="MarginContainer" node_paths=PackedStringArray("_text")]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+script = ExtResource("1_4lyak")
+_text = NodePath("Text")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0, 0, 0, 0.556863)
+
+[node name="Text" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+text = "I thought I asked you to clean this room before I got home..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+visible_characters = 0
+visible_ratio = 0.0

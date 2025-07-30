@@ -1,0 +1,214 @@
+[gd_scene load_steps=11 format=3 uid="uid://b0domjmmetbwb"]
+
+[ext_resource type="Texture2D" uid="uid://cr1nhoamxu6in" path="res://Scenes/UI/GameOver/game-over-door-closed.png" id="1_0glwe"]
+[ext_resource type="Script" uid="uid://b1mhrg8usd0wa" path="res://Scenes/UI/GameOver/game_over_ui.gd" id="1_jusm0"]
+[ext_resource type="Texture2D" uid="uid://inxv135qsmgh" path="res://Scenes/UI/GameOver/game-over-door-open.png" id="2_jusm0"]
+[ext_resource type="PackedScene" uid="uid://cir2amo1trdnu" path="res://Scenes/UI/DialogBox/dialog_box.tscn" id="4_tjmap"]
+
+[sub_resource type="Theme" id="Theme_0glwe"]
+default_font_size = 20
+
+[sub_resource type="Animation" id="Animation_0glwe"]
+resource_name = "door-shake-open"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoorOpened:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1.955, 2.22), Vector2(2.63, 1.6), Vector2(-2.47, 2.195), Vector2(-1.665, -3.165), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jusm0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoorOpened:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FadeInOutMask:color:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DoorOpened:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_tjmap"]
+resource_name = "fade-in"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeInOutMask:color:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_ccb6y"]
+resource_name = "game-over-intro"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeInOutMask:color:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoorOpened:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DoorOpened:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.00114, 1.0678, 1.13447, 1.20114, 1.2678, 1.33447),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(-1.955, 2.22), Vector2(2.63, 1.6), Vector2(-2.47, 2.195), Vector2(-1.665, -3.165), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tjmap"]
+_data = {
+&"RESET": SubResource("Animation_jusm0"),
+&"door-shake-open": SubResource("Animation_0glwe"),
+&"fade-in": SubResource("Animation_tjmap"),
+&"game-over-intro": SubResource("Animation_ccb6y")
+}
+
+[node name="GameOver" type="Control" node_paths=PackedStringArray("_anim", "_dialogBox", "_replayButton", "_finalStats")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_0glwe")
+script = ExtResource("1_jusm0")
+_anim = NodePath("AnimationPlayer")
+_dialogBox = NodePath("DialogBox")
+_replayButton = NodePath("FinalStats/BoxContainer/ReplayButton")
+_finalStats = NodePath("FinalStats")
+
+[node name="DoorClosed" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_0glwe")
+
+[node name="DoorOpened" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_jusm0")
+
+[node name="FadeInOutMask" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DialogBox" parent="." instance=ExtResource("4_tjmap")]
+layout_mode = 1
+offset_top = -106.0
+_revealSpeed = 0.5
+
+[node name="FinalStats" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+
+[node name="ColorRect" type="ColorRect" parent="FinalStats"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.960784)
+
+[node name="BoxContainer" type="BoxContainer" parent="FinalStats"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+vertical = true
+
+[node name="Label" type="Label" parent="FinalStats/BoxContainer"]
+layout_mode = 2
+text = "Thanks for playing!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="FinalStats/BoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7128, 0.72, 0.71304, 0.8)
+theme_override_font_sizes/font_size = 16
+text = "Made with <3 by Fleetfoxx"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReplayButton" type="Button" parent="FinalStats/BoxContainer"]
+layout_mode = 2
+text = "Play Again"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tjmap")
+}
