@@ -11,10 +11,10 @@ var _secondsToCombo := 5;
 # var secondsUntilMomArrives := 60 * 5; # 5 min
 var secondsUntilMomArrives := 10; # for testing
 var pointsToWin := 500;
+
 var didWin: bool:
   get:
     return gameState.points >= pointsToWin;
-
 
 var isGameOver: bool:
   get:

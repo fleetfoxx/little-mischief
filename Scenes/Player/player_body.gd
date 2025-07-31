@@ -71,6 +71,7 @@ func tryDropObject(event: InputEvent):
   if (_heldObject is RigidBody3D):
     # enable player collision
     _heldObject.set_collision_mask_value(2, true);
+    _heldObject.collision_layer = _heldObjectCollisionLayers;
     _heldObject.freeze = false;
 
   if (_heldObject.has_method("drop")):
@@ -78,6 +79,7 @@ func tryDropObject(event: InputEvent):
   _heldObject = null;
 
 
+var _heldObjectCollisionLayers: int;
 func tryGrabObject(event: InputEvent):
   if (!event.is_action_pressed("action-right")): return ;
   if (_heldObject != null): return ;
@@ -97,7 +99,10 @@ func tryGrabObject(event: InputEvent):
   if (_heldObject is RigidBody3D):
     # disable player collision
     _heldObject.set_collision_mask_value(2, false);
+    _heldObjectCollisionLayers = _heldObject.collision_layer;
+    _heldObject.collision_layer = 0;
     _heldObject.freeze = true;
+    
     # TODO: disable
 
   if (_heldObject.has_method("grab")):
