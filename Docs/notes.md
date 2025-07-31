@@ -1,7 +1,6 @@
 # What's left?
 
 - 📌 [M] SFX
-- [S] Add door model.
 - [I] Add a minimum distance threshold for displaceable objects.
 - [S] Create room textures (walls, floor, ceiling)
 - [S] Music
@@ -11,6 +10,7 @@
 - [M] PROP: Nerf Gun
 - [S] Polish Desk and dresser models
 - [I+] Polish game over UI
+- ✅ [S] Add door model.
 - ✅ [S] BUG: Properly disable collisions with held objects to avoid getting pushed out of the map.
 - ✅ [S+] Create pause menu
 - ✅ [I] BUG: Fix displaced pillows.

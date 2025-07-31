@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cb1bksbfdye6f"]
+[gd_scene load_steps=25 format=3 uid="uid://cb1bksbfdye6f"]
 
 [ext_resource type="PackedScene" uid="uid://dh77ndy6gnugv" path="res://Scenes/Bedroom/bunk_bed.tscn" id="1_l7e8u"]
 [ext_resource type="PackedScene" uid="uid://cbcgtlss01lh2" path="res://Scenes/Bedroom/dresser.tscn" id="2_1mw0j"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b35hjwacycgkv" path="res://Scenes/Props/TVRemote/tv_remote.tscn" id="10_my0hu"]
 [ext_resource type="PackedScene" uid="uid://blxqf78hh71nt" path="res://Scenes/Props/WallSocket/wall_socket.tscn" id="11_01rub"]
 [ext_resource type="PackedScene" uid="uid://cmfgjfdlp3mtj" path="res://Scenes/Props/bedroom_window.tscn" id="12_l7e8u"]
+[ext_resource type="PackedScene" uid="uid://col44yqqjag0s" path="res://Scenes/Props/door.tscn" id="13_pu40h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6g5cc"]
 size = Vector3(4, 0.226074, 6)
@@ -165,3 +166,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.992
 
 [node name="BedroomWindow" parent="." instance=ExtResource("12_l7e8u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81878, 1.67435, 0.133251)
+
+[node name="Door2" parent="." instance=ExtResource("13_pu40h")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, -2)
