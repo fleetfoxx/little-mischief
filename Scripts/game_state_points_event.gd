@@ -6,5 +6,5 @@ var source: String;
 
 func _init(_points: int, _source: String):
   points = _points;
-  timestamp = Time.get_unix_time_from_system();
+  timestamp = Time.get_ticks_msec() / 1000;
   source = _source;

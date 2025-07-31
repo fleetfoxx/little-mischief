@@ -1,9 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://cir2amo1trdnu"]
+[gd_scene load_steps=3 format=3 uid="uid://cir2amo1trdnu"]
 
 [ext_resource type="Script" uid="uid://r5r1gjdk6rab" path="res://Scenes/UI/DialogBox/dialog_box.gd" id="1_4lyak"]
+[ext_resource type="Texture2D" uid="uid://cqtb2u1wxcto7" path="res://Scenes/UI/DialogBox/dialog-continue.png" id="2_mtjhv"]
 
-[node name="DialogBox" type="MarginContainer" node_paths=PackedStringArray("_text")]
-visible = false
+[node name="DialogBox" type="Control" node_paths=PackedStringArray("_text", "_continueIndicator")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4lyak")
+_text = NodePath("MarginContainer/Text")
+_continueIndicator = NodePath("ContinueIndicator")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -15,19 +27,35 @@ theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
-script = ExtResource("1_4lyak")
-_text = NodePath("Text")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="MarginContainer"]
 layout_mode = 2
 color = Color(0, 0, 0, 0.556863)
 
-[node name="Text" type="Label" parent="."]
+[node name="Text" type="Label" parent="MarginContainer"]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
-text = "I thought I asked you to clean this room before I got home..."
+text = "PLACEHOLDER"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 visible_characters = 0
 visible_ratio = 0.0
+
+[node name="ContinueIndicator" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -42.0
+offset_top = -26.0
+offset_right = -26.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("2_mtjhv")
+stretch_mode = 4

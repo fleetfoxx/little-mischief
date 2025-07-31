@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6226i1d2vhk1"]
+
+[ext_resource type="Script" uid="uid://d1rd5o83yd5hs" path="res://Scenes/UI/PauseMenu/pause_menu.gd" id="1_wtndc"]
+
+[node name="PauseMenu" type="Control" node_paths=PackedStringArray("_resumeButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wtndc")
+_resumeButton = NodePath("BoxContainer/Button")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.882353)
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 425.0
+offset_right = -425.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+alignment = 1
+vertical = true
+
+[node name="Label" type="Label" parent="BoxContainer"]
+layout_mode = 2
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Resume"

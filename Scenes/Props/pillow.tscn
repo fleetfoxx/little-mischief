@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1yj8s0fh7gl1"]
+[gd_scene load_steps=4 format=3 uid="uid://d1yj8s0fh7gl1"]
 
+[ext_resource type="Script" uid="uid://br1wdstia4vof" path="res://Scenes/Props/pillow.gd" id="1_atxqu"]
 [ext_resource type="PackedScene" uid="uid://dv4e10oagsup8" path="res://Scenes/Bedroom/pillow.glb" id="1_v4u1m"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_atxqu"]
@@ -8,6 +9,8 @@ size = Vector3(0.501709, 0.193115, 0.860352)
 [node name="Pillow" type="RigidBody3D"]
 collision_layer = 108
 collision_mask = 159
+script = ExtResource("1_atxqu")
+_pointsOnDisplace = 5
 
 [node name="pillow2" parent="." instance=ExtResource("1_v4u1m")]
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbup31tqwpi7a"]
+[gd_scene load_steps=7 format=3 uid="uid://bbup31tqwpi7a"]
 
 [ext_resource type="Script" uid="uid://dxiwdqj7qbq6x" path="res://Scenes/Player/player_body.gd" id="1_jm3vh"]
 [ext_resource type="PackedScene" uid="uid://cabjxhg8ml0ry" path="res://Scenes/Player/HUD/player_hud.tscn" id="2_v8jfa"]
 [ext_resource type="PackedScene" uid="uid://do2iv0turwg7j" path="res://Scenes/Player/Hands/hands_ui.tscn" id="4_3305p"]
+[ext_resource type="PackedScene" uid="uid://b6226i1d2vhk1" path="res://Scenes/UI/PauseMenu/pause_menu.tscn" id="4_enob1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jm3vh"]
 radius = 0.05
@@ -48,3 +49,6 @@ shape = SubResource("CapsuleShape3D_jm3vh")
 [node name="HandsUI" parent="CanvasLayer" instance=ExtResource("4_3305p")]
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("2_v8jfa")]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("4_enob1")]
+process_mode = 3

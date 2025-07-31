@@ -4,9 +4,9 @@ signal game_state_changed(state: GameState);
 
 var gameState := GameState.new();
 
-var _gameOverTimer: Timer;
+var _tickTimer: Timer;
 var _chainTimer: Timer;
-var _timeToCombo := 3;
+var _secondsToCombo := 5;
 
 # var secondsUntilMomArrives := 60 * 5; # 5 min
 var secondsUntilMomArrives := 10; # for testing
@@ -16,10 +16,9 @@ var didWin: bool:
     return gameState.points >= pointsToWin;
 
 
-var isGameOver : bool:
+var isGameOver: bool:
   get:
-    var current = Time.get_unix_time_from_system();
-    return gameState.startTimeStamp + secondsUntilMomArrives <= current;
+    return gameState.elapsedSeconds >= secondsUntilMomArrives;
 
 
 func _ready():
@@ -27,9 +26,9 @@ func _ready():
   add_child(_chainTimer);
   _chainTimer.timeout.connect(onChainTimeout);
 
-  _gameOverTimer = Timer.new();
-  add_child(_gameOverTimer);
-  _gameOverTimer.timeout.connect(onGameOverTimerElapsed);
+  _tickTimer = Timer.new();
+  add_child(_tickTimer);
+  _tickTimer.timeout.connect(onTickTimerElapsed);
 
   await get_tree().process_frame;
   reinitialize();
@@ -37,17 +36,15 @@ func _ready():
 
 func reinitialize():
   gameState = GameState.new();
-  gameState.startTimeStamp = Time.get_unix_time_from_system(); # TODO: ensure this isn't called until the game starts. perhaps this logic belongs in the GameWorld scene?
   gameState.secondsUntilMomArrives = secondsUntilMomArrives;
   game_state_changed.emit(gameState);
-  _gameOverTimer.start(1);
+  _tickTimer.start(1);
 
 
 func addPoints(amt: int, source: String):
-  # gameState.set("points", gameState.get("points") + amt);
   gameState.currentChain.append(PointsEvent.new(amt, source));
   game_state_changed.emit(gameState);
-  _chainTimer.start(_timeToCombo);
+  _chainTimer.start(_secondsToCombo);
 
 
 func sum(acc: int, val: PointsEvent):
@@ -56,11 +53,11 @@ func sum(acc: int, val: PointsEvent):
 
 func onChainTimeout():
   var chainTotal = gameState.currentChain.reduce(sum, 0) * gameState.currentChain.size();
-  gameState.set("points", gameState.get("points") + chainTotal);
+  gameState.points += chainTotal;
   gameState.currentChain = [];
   game_state_changed.emit(gameState);
 
 
-func onGameOverTimerElapsed():
-  if (isGameOver):
-    game_state_changed.emit(gameState);
+func onTickTimerElapsed():
+  gameState.elapsedSeconds += 1;
+  game_state_changed.emit(gameState);

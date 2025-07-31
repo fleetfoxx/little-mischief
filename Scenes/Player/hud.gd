@@ -40,8 +40,7 @@ func handleGameStateChanged(state: GameState):
 
   
 func updateHUD():
-  var currentTime := Time.get_unix_time_from_system();
-  var diff := GameStateManager.gameState.secondsUntilMomArrives - (currentTime - GameStateManager.gameState.startTimeStamp);
+  var diff := GameStateManager.gameState.secondsUntilMomArrives - GameStateManager.gameState.elapsedSeconds;
   if (diff < 0):
     _countdownLabel.text = "00:00";
   else:

@@ -20,36 +20,48 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_mok0f")
 script = ExtResource("1_nxght")
-_pointsLabel = NodePath("BoxContainer2/Points")
-_chainLabel = NodePath("BoxContainer/CurrentChain")
-_chainMultLabel = NodePath("BoxContainer/CurrentChainCalc")
-_countdownLabel = NodePath("BoxContainer2/Countdown")
+_pointsLabel = NodePath("MarginContainer/BoxContainer3/BoxContainer2/Points")
+_chainLabel = NodePath("MarginContainer/BoxContainer3/BoxContainer/CurrentChain")
+_chainMultLabel = NodePath("MarginContainer/BoxContainer3/BoxContainer/CurrentChainCalc")
+_countdownLabel = NodePath("MarginContainer/BoxContainer3/BoxContainer2/Countdown")
 
-[node name="BoxContainer2" type="BoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 192.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="BoxContainer2"]
+[node name="BoxContainer3" type="BoxContainer" parent="MarginContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="BoxContainer2" type="BoxContainer" parent="MarginContainer/BoxContainer3"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/BoxContainer3/BoxContainer2"]
 layout_mode = 2
 theme_override_constants/margin_bottom = 0
 
-[node name="FrameBackground" type="TextureRect" parent="BoxContainer2/MarginContainer"]
+[node name="FrameBackground" type="TextureRect" parent="MarginContainer/BoxContainer3/BoxContainer2/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("3_f1qbt")
 
-[node name="FrameTop" type="TextureRect" parent="BoxContainer2/MarginContainer"]
+[node name="FrameTop" type="TextureRect" parent="MarginContainer/BoxContainer3/BoxContainer2/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("4_mok0f")
 
-[node name="SlashContainer" type="Control" parent="BoxContainer2/MarginContainer" node_paths=PackedStringArray("_slashes")]
+[node name="SlashContainer" type="Control" parent="MarginContainer/BoxContainer3/BoxContainer2/MarginContainer" node_paths=PackedStringArray("_slashes")]
 layout_mode = 2
 script = ExtResource("5_g1klr")
 _slashes = [NodePath("Slash1"), NodePath("Slash2"), NodePath("Slash3"), NodePath("Slash4"), NodePath("Slash5")]
 
-[node name="Slash1" type="TextureRect" parent="BoxContainer2/MarginContainer/SlashContainer"]
+[node name="Slash1" type="TextureRect" parent="MarginContainer/BoxContainer3/BoxContainer2/MarginContainer/SlashContainer"]
 layout_mode = 2
 offset_left = 77.0
 offset_top = -25.654
@@ -59,7 +71,7 @@ rotation = 0.414901
 texture = ExtResource("5_mhwpf")
 stretch_mode = 5
 
-[node name="Slash2" type="TextureRect" parent="BoxContainer2/MarginContainer/SlashContainer"]
+[node name="Slash2" type="TextureRect" parent="MarginContainer/BoxContainer3/BoxContainer2/MarginContainer/SlashContainer"]
 layout_mode = 2
 offset_left = -64.0
 offset_top = 45.0
@@ -70,7 +82,7 @@ texture = ExtResource("5_mhwpf")
 stretch_mode = 5
 flip_v = true
 
-[node name="Slash3" type="TextureRect" parent="BoxContainer2/MarginContainer/SlashContainer"]
+[node name="Slash3" type="TextureRect" parent="MarginContainer/BoxContainer3/BoxContainer2/MarginContainer/SlashContainer"]
 layout_mode = 2
 offset_left = -27.0
 offset_top = 93.0
@@ -80,7 +92,7 @@ rotation = -0.978977
 texture = ExtResource("5_mhwpf")
 stretch_mode = 5
 
-[node name="Slash4" type="TextureRect" parent="BoxContainer2/MarginContainer/SlashContainer"]
+[node name="Slash4" type="TextureRect" parent="MarginContainer/BoxContainer3/BoxContainer2/MarginContainer/SlashContainer"]
 layout_mode = 2
 offset_left = 196.0
 offset_top = 23.0
@@ -91,7 +103,7 @@ texture = ExtResource("5_mhwpf")
 stretch_mode = 5
 flip_v = true
 
-[node name="Slash5" type="TextureRect" parent="BoxContainer2/MarginContainer/SlashContainer"]
+[node name="Slash5" type="TextureRect" parent="MarginContainer/BoxContainer3/BoxContainer2/MarginContainer/SlashContainer"]
 layout_mode = 2
 offset_left = 116.0
 offset_top = -68.654
@@ -102,45 +114,39 @@ texture = ExtResource("5_mhwpf")
 stretch_mode = 5
 flip_v = true
 
-[node name="LilGuy" type="TextureRect" parent="BoxContainer2/MarginContainer"]
+[node name="LilGuy" type="TextureRect" parent="MarginContainer/BoxContainer3/BoxContainer2/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("6_g1klr")
 
-[node name="FrameBottom" type="TextureRect" parent="BoxContainer2/MarginContainer"]
+[node name="FrameBottom" type="TextureRect" parent="MarginContainer/BoxContainer3/BoxContainer2/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("7_skbyo")
 
-[node name="Points" type="Label" parent="BoxContainer2"]
+[node name="Points" type="Label" parent="MarginContainer/BoxContainer3/BoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 text = "123"
 
-[node name="Countdown" type="Label" parent="BoxContainer2"]
+[node name="Countdown" type="Label" parent="MarginContainer/BoxContainer3/BoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "00:00"
 
-[node name="BoxContainer" type="BoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -110.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="BoxContainer" type="BoxContainer" parent="MarginContainer/BoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 10
 theme_override_constants/separation = -16
 alignment = 1
 vertical = true
 
-[node name="CurrentChainCalc" type="Label" parent="BoxContainer"]
+[node name="CurrentChainCalc" type="Label" parent="MarginContainer/BoxContainer3/BoxContainer"]
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CurrentChain" type="Label" parent="BoxContainer"]
+[node name="CurrentChain" type="Label" parent="MarginContainer/BoxContainer3/BoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_constants/outline_size = 8
