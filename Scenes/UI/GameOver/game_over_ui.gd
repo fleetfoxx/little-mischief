@@ -5,6 +5,7 @@ signal onRestartGame();
 
 @export var _anim: AnimationPlayer;
 @export var _dialogBox: DialogBox;
+@export var _finalScore: Label;
 @export var _replayButton: Button;
 @export var _finalStats: Control;
 
@@ -58,4 +59,5 @@ func handleDialogFinished(text: String):
     else:
       _dialogBox.revealText(dialogItems["bad"]);
   else:
+    _finalScore.text = "Final Score: %d" % GameStateManager.gameState.points;
     _finalStats.show();

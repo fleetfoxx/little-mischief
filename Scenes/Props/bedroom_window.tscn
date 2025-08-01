@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmfgjfdlp3mtj"]
+[gd_scene load_steps=13 format=3 uid="uid://cmfgjfdlp3mtj"]
 
 [ext_resource type="Script" uid="uid://b2brbck5wd5vx" path="res://Scenes/Props/bedroom_window.gd" id="1_8nv6l"]
 [ext_resource type="PackedScene" uid="uid://bksny6gacvc6w" path="res://Scenes/Bedroom/window.glb" id="1_skwbm"]
+[ext_resource type="AudioStream" uid="uid://c6ryire6nqfmo" path="res://SFX/FIREMisc_Fire Crackling In A Woodstove_UberDuo_WOOD.wav" id="3_as53f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8nv6l"]
 size = Vector3(0.236938, 2.02551, 2.2998)
@@ -42,13 +43,14 @@ height = 0.2
 [sub_resource type="BoxShape3D" id="BoxShape3D_as53f"]
 size = Vector3(0.700195, 2.50488, 2.68066)
 
-[node name="BedroomWindow" type="Area3D" node_paths=PackedStringArray("_fireParticles", "_smokeParticles", "_fireArea") groups=["flammable"]]
+[node name="BedroomWindow" type="Area3D" node_paths=PackedStringArray("_fireParticles", "_smokeParticles", "_fireArea", "_fireSFX") groups=["flammable"]]
 collision_layer = 32
 collision_mask = 16
 script = ExtResource("1_8nv6l")
 _fireParticles = NodePath("FireParticles")
 _smokeParticles = NodePath("SmokeParticles")
 _fireArea = NodePath("FireArea")
+_fireSFX = NodePath("FireSFX")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0691528, -0.0995483, 0)
@@ -76,3 +78,7 @@ collision_mask = 32
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.218262, 0, 0)
 shape = SubResource("BoxShape3D_as53f")
 debug_color = Color(0.857598, 0.36496, 5.77569e-07, 0.42)
+
+[node name="FireSFX" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_as53f")
+volume_db = -19.2

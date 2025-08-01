@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://rf7bupb1ioc0"]
+[gd_scene load_steps=7 format=3 uid="uid://rf7bupb1ioc0"]
 
 [ext_resource type="Script" uid="uid://oqug2kvf5wr5" path="res://Scenes/Props/toy_block.gd" id="1_nnx3v"]
 [ext_resource type="Texture2D" uid="uid://c5w5debs4ao03" path="res://icon.svg" id="2_5tfff"]
+[ext_resource type="AudioStream" uid="uid://dbtj5varww2dq" path="res://SFX/ZapSplat/zapsplat_leisure_game_jenga_wood_block_single_stack_on_another_003_52369.mp3" id="3_hc1rx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nnx3v"]
 albedo_color = Color(0, 0.596078, 0.705882, 1)
@@ -14,11 +15,15 @@ size = Vector3(0.1, 0.1, 0.1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_83sgb"]
 size = Vector3(0.1, 0.1, 0.1)
 
-[node name="ToyBlock" type="RigidBody3D" groups=["grabbable"]]
+[node name="ToyBlock" type="RigidBody3D" node_paths=PackedStringArray("_knockSFX") groups=["grabbable"]]
 collision_layer = 4
 collision_mask = 7
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_nnx3v")
+_knockSFX = NodePath("KnockSFX")
 _pointsOnDisplace = 5
+_displacementDeadzone = 0.025
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
@@ -27,3 +32,7 @@ mesh = SubResource("BoxMesh_83sgb")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 shape = SubResource("BoxShape3D_83sgb")
+
+[node name="KnockSFX" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_hc1rx")
+volume_db = -11.4

@@ -1,6 +1,2 @@
-# Credits
-
-## Fonts
-
-- Fiolex Mephisto
-- Mirage final
+Font: Fiolex Mephisto
+SFX: ZapSplat

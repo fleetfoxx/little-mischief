@@ -1,6 +1,9 @@
 class_name PlayerBody
 extends CharacterBody3D
 
+@export var _camera: Camera3D;
+@export var _footsteps: AudioStreamPlayer3D;
+
 @export_category("Movement")
 @export var _mouseSensitivity := 10;
 @export var _walkSpeed := 10;
@@ -8,12 +11,12 @@ extends CharacterBody3D
 @export var _jumpHeight := 1;
 @export var _pushForce := 500;
 @export var _punchForce := 500;
-
-@export var _camera: Camera3D;
+@export var _throwForce := 5;
 
 @export_category("Holdin' & Grabbin'")
 @export var _holdPoint: Marker3D;
 @export var _selectionRay: RayCast3D;
+
 var _heldObject: Node3D = null;
 var _heldObjectPreviousParent: Node3D = null;
 
@@ -46,6 +49,13 @@ func _unhandled_input(event: InputEvent):
   tryPunchObject(event);
 
 
+func _process(delta):
+  if ((_footsteps.playing && velocity.is_zero_approx()) || !is_on_floor()):
+    _footsteps.stop();
+  elif (!_footsteps.playing && !velocity.is_zero_approx() && is_on_floor()):
+    _footsteps.play();
+
+
 func _physics_process(delta):
   velocity = walk(delta) + gravity(delta) + jump(delta)
   var collided = move_and_slide();
@@ -73,6 +83,7 @@ func tryDropObject(event: InputEvent):
     _heldObject.set_collision_mask_value(2, true);
     _heldObject.collision_layer = _heldObjectCollisionLayers;
     _heldObject.freeze = false;
+    _heldObject.apply_central_impulse(_camera.basis.z.normalized() * -_throwForce);
 
   if (_heldObject.has_method("drop")):
     _heldObject.drop();

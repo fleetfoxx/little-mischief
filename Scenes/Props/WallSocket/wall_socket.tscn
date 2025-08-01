@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://blxqf78hh71nt"]
+[gd_scene load_steps=9 format=3 uid="uid://blxqf78hh71nt"]
 
 [ext_resource type="Script" uid="uid://bfgpa56fpg002" path="res://Scenes/Props/WallSocket/wall_socket.gd" id="1_uxllp"]
 [ext_resource type="PackedScene" uid="uid://3k2y0b8uiron" path="res://Scenes/Bedroom/socket.glb" id="1_xex4s"]
+[ext_resource type="AudioStream" uid="uid://2l21ski0op30" path="res://SFX/Bluezone_BC0299_electricity_surge_discharge_electrical_arc_crackling_002_01.wav" id="3_044lc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uxllp"]
 size = Vector3(0.0292969, 0.185791, 0.12915)
@@ -23,12 +24,13 @@ height = 0.02
 [sub_resource type="BoxShape3D" id="BoxShape3D_044lc"]
 size = Vector3(0.5, 1, 1)
 
-[node name="WallSocket" type="Area3D" node_paths=PackedStringArray("_sparkArea", "_sparkParticles") groups=["ignition-source"]]
+[node name="WallSocket" type="Area3D" node_paths=PackedStringArray("_sparkArea", "_sparkParticles", "_sparkSFX") groups=["ignition-source"]]
 collision_layer = 64
 collision_mask = 128
 script = ExtResource("1_uxllp")
 _sparkArea = NodePath("SparkArea")
 _sparkParticles = NodePath("SparkParticles")
+_sparkSFX = NodePath("SparkSFX")
 
 [node name="socket2" parent="." instance=ExtResource("1_xex4s")]
 
@@ -51,3 +53,8 @@ collision_mask = 32
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0)
 shape = SubResource("BoxShape3D_044lc")
 debug_color = Color(0.671141, 0.508701, 0, 0.42)
+
+[node name="SparkSFX" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_044lc")
+volume_db = -43.111
+pitch_scale = 1.2

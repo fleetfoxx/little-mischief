@@ -8,9 +8,9 @@ var _tickTimer: Timer;
 var _chainTimer: Timer;
 var _secondsToCombo := 5;
 
-# var secondsUntilMomArrives := 60 * 5; # 5 min
-var secondsUntilMomArrives := 10; # for testing
-var pointsToWin := 500;
+var secondsUntilMomArrives := 60 * 1; # 1 min
+# var secondsUntilMomArrives := 10; # for testing
+var pointsToWin := 1000;
 
 var didWin: bool:
   get:
@@ -47,15 +47,19 @@ func addPoints(amt: int, source: String):
   _chainTimer.start(_secondsToCombo);
 
 
+func applyCurrentCombo():
+  var chainTotal := gameState.currentChain.reduce(sum, 0) as int * gameState.currentChain.size();
+  gameState.points += chainTotal;
+  gameState.currentChain = [];
+  game_state_changed.emit(gameState);
+
+
 func sum(acc: int, val: PointsEvent):
   return acc + val.points;
 
 
 func onChainTimeout():
-  var chainTotal = gameState.currentChain.reduce(sum, 0) * gameState.currentChain.size();
-  gameState.points += chainTotal;
-  gameState.currentChain = [];
-  game_state_changed.emit(gameState);
+  applyCurrentCombo();
 
 
 func onTickTimerElapsed():

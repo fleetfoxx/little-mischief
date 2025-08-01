@@ -3,6 +3,7 @@ extends Area3D
 @export var _fireParticles: GPUParticles3D;
 @export var _smokeParticles: GPUParticles3D;
 @export var _fireArea: Area3D;
+@export var _fireSFX: AudioStreamPlayer3D;
 
 @export var _pointsOnBurn := 50;
 
@@ -18,15 +19,17 @@ func _ready():
   _fireArea.monitorable = false;
   _fireParticles.emitting = false;
   _smokeParticles.emitting = false;
+  _fireSFX.stop();
 
 
 func ignite(area: Area3D):
   if (_isLit): return ;
-  monitoring = false;
-  monitorable = false;
+  set_deferred("monitoring", false);
+  set_deferred("monitorable", false);
   _fireParticles.emitting = true;
   _smokeParticles.emitting = true;
-  _fireArea.monitoring = true;
-  _fireArea.monitorable = true;
+  _fireArea.set_deferred("monitoring", true);
+  _fireArea.set_deferred("monitorable", true);
   _isLit = true;
   GameStateManager.addPoints(_pointsOnBurn, "Crispy Curtains");
+  _fireSFX.play();

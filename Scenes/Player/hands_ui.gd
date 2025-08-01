@@ -15,10 +15,6 @@ func _ready():
 func _unhandled_input(event):
   if (event.is_action_pressed("action-left")):
     startPunch();
-    # _leftHand.texture = _punchSprite;
-  # elif (event.is_action_released("action-left")):
-    # _leftHand.texture = _defaultSprite;
-
   if (event.is_action_pressed("action-right")):
     _rightHand.texture = _punchSprite;
   elif (event.is_action_released("action-right")):

@@ -98,6 +98,7 @@ toggle-pause={
 3d_physics/layer_6="flammable"
 3d_physics/layer_7="wettable"
 3d_physics/layer_8="wet"
+3d_physics/layer_9="ball"
 
 [physics]
 

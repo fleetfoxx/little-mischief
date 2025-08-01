@@ -2,9 +2,11 @@ class_name DisplaceableObject
 extends RigidBody3D
 
 @export var _pointsOnDisplace := 1;
+@export var _displacementDeadzone := 0.0;
 
 var _initialPosition := Vector3.ZERO;
 var _isDisplaced := false;
+var _isSettled := false;
 var _sourceName := "Object";
 
 
@@ -12,16 +14,18 @@ func _ready():
   sleeping_state_changed.connect(sleepingStateChanged);
 
 
-func sleepingStateChanged():
-  # This item has already been displace, we don't care about any more state changes.
-  if (_isDisplaced): return ;
+func _process(delta):
+  if (!_isDisplaced && !sleeping && _isSettled):
+    if (global_position.distance_squared_to(_initialPosition) >= (_displacementDeadzone * _displacementDeadzone)):
+      displace();
 
-  if (!sleeping):
-    displace();
-  else:
-    # This should only happen after the object has settled for the first time.
-    _initialPosition = global_position;
-    # print("%s has settled for the first time, initial position set to %s" % [name, _initialPosition]);
+
+func sleepingStateChanged():
+  if (_isDisplaced): return ;
+  if (!sleeping): return ;
+  _initialPosition = global_position;
+  _isSettled = true;
+  # print("%s has settled, initial position set to %s" % [name, _initialPosition]);
 
 
 func displace():

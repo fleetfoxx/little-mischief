@@ -5,17 +5,22 @@
 [ext_resource type="PackedScene" uid="uid://b0domjmmetbwb" path="res://Scenes/UI/GameOver/game_over_ui.tscn" id="3_i1e5p"]
 [ext_resource type="PackedScene" uid="uid://c7u34p4e5uai4" path="res://Scenes/GameWorld/game_world.tscn" id="3_qikps"]
 
-[node name="Game" type="Node" node_paths=PackedStringArray("_mainMenu", "_gameOverUI")]
+[node name="Game" type="Node" node_paths=PackedStringArray("_mainMenu", "_gameOverUI", "_gameWorld")]
+process_mode = 3
 script = ExtResource("1_qxfds")
 _mainMenu = NodePath("CanvasLayer/MainMenu")
 _gameOverUI = NodePath("CanvasLayer/GameOver")
+_gameWorld = NodePath("GameWorld")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 
 [node name="MainMenu" parent="CanvasLayer" instance=ExtResource("1_mv0hc")]
+process_mode = 3
 
 [node name="GameOver" parent="CanvasLayer" instance=ExtResource("3_i1e5p")]
+process_mode = 3
 visible = false
 
 [node name="GameWorld" parent="." instance=ExtResource("3_qikps")]
+process_mode = 1

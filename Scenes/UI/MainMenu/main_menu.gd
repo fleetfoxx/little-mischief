@@ -3,7 +3,7 @@ extends Control
 
 signal start_game();
 
-@export var _startButton: Button;
+@export var _startButton: TextureButton;
 
 func _ready():
   _startButton.pressed.connect(emitStartGame);

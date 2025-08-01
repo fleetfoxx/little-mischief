@@ -1,3 +1,4 @@
+class_name GameWorld
 extends Node3D
 
 @export var _player: PlayerBody;

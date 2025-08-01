@@ -2,6 +2,7 @@ extends Area3D
 
 @export var _sparkArea: Area3D;
 @export var _sparkParticles: GPUParticles3D;
+@export var _sparkSFX: AudioStreamPlayer3D;
 
 @export var _pointsOnWet := 25;
 
@@ -14,6 +15,7 @@ func _ready():
   _sparkArea.monitorable = false;
   _sparkParticles.emitting = false;
   area_entered.connect(handleWaterContact);
+  _sparkSFX.stop();
 
 
 func handleWaterContact(area: Area3D):
@@ -23,3 +25,4 @@ func handleWaterContact(area: Area3D):
   _sparkParticles.emitting = true;
   _isWet = true;
   GameStateManager.addPoints(_pointsOnWet, "Wall Socket");
+  _sparkSFX.play();

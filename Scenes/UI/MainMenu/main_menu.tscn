@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bm22qhgxthmiv"]
+[gd_scene load_steps=4 format=3 uid="uid://bm22qhgxthmiv"]
 
 [ext_resource type="Script" uid="uid://bmev2ibt4f4p2" path="res://Scenes/UI/MainMenu/main_menu.gd" id="1_j3ucw"]
+[ext_resource type="Texture2D" uid="uid://cbap4nxnqp6m8" path="res://Scenes/UI/MainMenu/main-menu.png" id="2_o53sk"]
+[ext_resource type="Texture2D" uid="uid://d12grdiifmgc4" path="res://Scenes/UI/MainMenu/play-button.png" id="2_tik7u"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("_startButton")]
 layout_mode = 3
@@ -10,37 +12,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_j3ucw")
-_startButton = NodePath("BoxContainer/StartButton")
+_startButton = NodePath("MarginContainer/PlayButton")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
+texture = ExtResource("2_o53sk")
 
-[node name="BoxContainer" type="BoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 490.0
-offset_right = -490.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 32
-alignment = 1
-vertical = true
+theme_override_constants/margin_top = 285
 
-[node name="Title" type="Label" parent="BoxContainer"]
+[node name="PlayButton" type="TextureButton" parent="MarginContainer"]
+custom_minimum_size = Vector2(16, 100)
 layout_mode = 2
-text = "I'm Just a Lil Guy"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="StartButton" type="Button" parent="BoxContainer"]
-layout_mode = 2
-text = "Play"
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("2_tik7u")

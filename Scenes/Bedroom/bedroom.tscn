@@ -1,5 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://cb1bksbfdye6f"]
+[gd_scene load_steps=29 format=3 uid="uid://cb1bksbfdye6f"]
 
+[ext_resource type="Texture2D" uid="uid://cshq1xyb77x1g" path="res://Scenes/Bedroom/wallpaper-texture.png" id="1_25uej"]
 [ext_resource type="PackedScene" uid="uid://dh77ndy6gnugv" path="res://Scenes/Bedroom/bunk_bed.tscn" id="1_l7e8u"]
 [ext_resource type="PackedScene" uid="uid://cbcgtlss01lh2" path="res://Scenes/Bedroom/dresser.tscn" id="2_1mw0j"]
 [ext_resource type="PackedScene" uid="uid://5sdgonr1ckqf" path="res://Scenes/Bedroom/desk.glb" id="3_28c5l"]
@@ -8,11 +9,14 @@
 [ext_resource type="PackedScene" uid="uid://rf7bupb1ioc0" path="res://Scenes/Props/toy_block.tscn" id="4_h0vc0"]
 [ext_resource type="PackedScene" uid="uid://cf6g5ubq2vt2i" path="res://Scenes/Bedroom/step-stool.glb" id="5_xl2jv"]
 [ext_resource type="PackedScene" uid="uid://cgu4eewqk5k10" path="res://Scenes/Props/TrainSet/train_set.tscn" id="7_1mw0j"]
+[ext_resource type="PackedScene" uid="uid://sh0yrbeqldrr" path="res://Scenes/Props/ball.tscn" id="9_7ykhd"]
 [ext_resource type="PackedScene" uid="uid://bx6akfsmxy4m7" path="res://Scenes/Child/child.tscn" id="9_hibd3"]
 [ext_resource type="PackedScene" uid="uid://b35hjwacycgkv" path="res://Scenes/Props/TVRemote/tv_remote.tscn" id="10_my0hu"]
 [ext_resource type="PackedScene" uid="uid://blxqf78hh71nt" path="res://Scenes/Props/WallSocket/wall_socket.tscn" id="11_01rub"]
 [ext_resource type="PackedScene" uid="uid://cmfgjfdlp3mtj" path="res://Scenes/Props/bedroom_window.tscn" id="12_l7e8u"]
 [ext_resource type="PackedScene" uid="uid://col44yqqjag0s" path="res://Scenes/Props/door.tscn" id="13_pu40h"]
+[ext_resource type="PackedScene" uid="uid://dqx78nypqtysg" path="res://Scenes/Bedroom/goal.tscn" id="16_6cw4v"]
+[ext_resource type="AudioStream" uid="uid://x3kdl55k3vvn" path="res://Audio/music.wav" id="16_76pcp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6g5cc"]
 size = Vector3(4, 0.226074, 6)
@@ -26,6 +30,8 @@ size = Vector3(0.3, 3, 6)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_klhad"]
 cull_mode = 1
 albedo_color = Color(0.509286, 0.509286, 0.509286, 1)
+albedo_texture = ExtResource("1_25uej")
+uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_6g5cc"]
 material = SubResource("StandardMaterial3D_klhad")
@@ -37,20 +43,20 @@ data = PackedVector3Array(-0.5531, -0.5, 0.093, -0.5531, 0.5, -1.4537, -0.5531, 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_my0hu"]
 data = PackedVector3Array(-0.2125, 0.1686, 0.2892, -0.2125, 0.2982, -0.2892, -0.2125, 0.2982, 0.2892, -0.2125, 0.1686, 0.2892, -0.2125, 0.1686, -0.2892, -0.2125, 0.2982, -0.2892, -0.2125, 0.1686, -0.2892, 0.2125, 0.2982, -0.2892, -0.2125, 0.2982, -0.2892, -0.2125, 0.1686, -0.2892, 0.2125, 0.1686, -0.2892, 0.2125, 0.2982, -0.2892, 0.2125, 0.1686, -0.2892, 0.2125, 0.2982, 0.2892, 0.2125, 0.2982, -0.2892, 0.2125, 0.1686, -0.2892, 0.2125, 0.1686, 0.2892, 0.2125, 0.2982, 0.2892, 0.2125, 0.1686, 0.2892, -0.2125, 0.2982, 0.2892, 0.2125, 0.2982, 0.2892, 0.2125, 0.1686, 0.2892, -0.2125, 0.1686, 0.2892, -0.2125, 0.2982, 0.2892, -0.2125, 0.1686, -0.2892, 0.2125, 0.1686, 0.2892, 0.2125, 0.1686, -0.2892, -0.2125, 0.1686, -0.2892, -0.2125, 0.1686, 0.2892, 0.2125, 0.1686, 0.2892, 0.2125, 0.2982, -0.2892, -0.2125, 0.2982, 0.2892, -0.2125, 0.2982, -0.2892, 0.2125, 0.2982, -0.2892, 0.2125, 0.2982, 0.2892, -0.2125, 0.2982, 0.2892, -0.1726, -0.0456, 0.1757, -0.1726, 0.2455, 0.2322, -0.1726, -0.008, 0.2998, -0.1726, -0.0456, 0.1757, -0.1726, 0.2079, 0.1081, -0.1726, 0.2455, 0.2322, -0.1726, 0.2079, 0.1081, 0.1726, 0.2455, 0.2322, -0.1726, 0.2455, 0.2322, -0.1726, 0.2079, 0.1081, 0.1726, 0.2079, 0.1081, 0.1726, 0.2455, 0.2322, 0.1726, 0.2079, 0.1081, 0.1726, -0.008, 0.2998, 0.1726, 0.2455, 0.2322, 0.1726, 0.2079, 0.1081, 0.1726, -0.0456, 0.1757, 0.1726, -0.008, 0.2998, 0.1726, -0.0456, 0.1757, -0.1726, -0.008, 0.2998, 0.1726, -0.008, 0.2998, 0.1726, -0.0456, 0.1757, -0.1726, -0.0456, 0.1757, -0.1726, -0.008, 0.2998, -0.1726, 0.2079, 0.1081, 0.1726, -0.0456, 0.1757, 0.1726, 0.2079, 0.1081, -0.1726, 0.2079, 0.1081, -0.1726, -0.0456, 0.1757, 0.1726, -0.0456, 0.1757, 0.1726, 0.2455, 0.2322, -0.1726, -0.008, 0.2998, -0.1726, 0.2455, 0.2322, 0.1726, 0.2455, 0.2322, 0.1726, -0.008, 0.2998, -0.1726, -0.008, 0.2998, 0.1726, -0.0456, -0.1678, 0.1726, 0.2455, -0.2243, 0.1726, -0.008, -0.2919, 0.1726, -0.0456, -0.1678, 0.1726, 0.2079, -0.1002, 0.1726, 0.2455, -0.2243, 0.1726, 0.2079, -0.1002, -0.1726, 0.2455, -0.2243, 0.1726, 0.2455, -0.2243, 0.1726, 0.2079, -0.1002, -0.1726, 0.2079, -0.1002, -0.1726, 0.2455, -0.2243, -0.1726, 0.2079, -0.1002, -0.1726, -0.008, -0.2919, -0.1726, 0.2455, -0.2243, -0.1726, 0.2079, -0.1002, -0.1726, -0.0456, -0.1678, -0.1726, -0.008, -0.2919, -0.1726, -0.0456, -0.1678, 0.1726, -0.008, -0.2919, -0.1726, -0.008, -0.2919, -0.1726, -0.0456, -0.1678, 0.1726, -0.0456, -0.1678, 0.1726, -0.008, -0.2919, 0.1726, 0.2079, -0.1002, -0.1726, -0.0456, -0.1678, -0.1726, 0.2079, -0.1002, 0.1726, 0.2079, -0.1002, 0.1726, -0.0456, -0.1678, -0.1726, -0.0456, -0.1678, -0.1726, 0.2455, -0.2243, 0.1726, -0.008, -0.2919, 0.1726, 0.2455, -0.2243, -0.1726, 0.2455, -0.2243, -0.1726, -0.008, -0.2919, 0.1726, -0.008, -0.2919)
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xl2jv"]
-friction = 0.5
-bounce = 0.5
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_25uej"]
+albedo_color = Color(0.508685, 0.482819, 0.438559, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xl2jv"]
-albedo_color = Color(1, 0, 0, 1)
+[sub_resource type="PlaneMesh" id="PlaneMesh_7ykhd"]
+material = SubResource("StandardMaterial3D_25uej")
+size = Vector2(4, 6)
 
-[sub_resource type="SphereMesh" id="SphereMesh_ukx1s"]
-material = SubResource("StandardMaterial3D_xl2jv")
-radius = 0.2
-height = 0.4
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ykhd"]
+albedo_color = Color(0.508685, 0.482819, 0.438559, 1)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_xl2jv"]
-radius = 0.2
+[sub_resource type="PlaneMesh" id="PlaneMesh_76pcp"]
+material = SubResource("StandardMaterial3D_7ykhd")
+flip_faces = true
+size = Vector2(4, 6)
 
 [node name="Bedroom" type="Node3D"]
 
@@ -139,18 +145,8 @@ metadata/_edit_group_ = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StepStool"]
 shape = SubResource("ConcavePolygonShape3D_my0hu")
 
-[node name="Ball" type="RigidBody3D" parent="." groups=["grabbable"]]
+[node name="Ball" parent="." instance=ExtResource("9_7ykhd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.11666, 0.394958, -1.35444)
-collision_layer = 4
-collision_mask = 15
-physics_material_override = SubResource("PhysicsMaterial_xl2jv")
-metadata/_edit_group_ = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ball"]
-mesh = SubResource("SphereMesh_ukx1s")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
-shape = SubResource("SphereShape3D_xl2jv")
 
 [node name="TrainSet" parent="." instance=ExtResource("7_1mw0j")]
 transform = Transform3D(-0.370995, 0, -0.928635, 0, 1, 0, 0.928635, 0, -0.370995, 0.808644, 0.00436099, 0.0996715)
@@ -169,3 +165,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81878, 1.67435, 0.133251)
 
 [node name="Door2" parent="." instance=ExtResource("13_pu40h")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, -2)
+
+[node name="Carpet" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
+mesh = SubResource("PlaneMesh_7ykhd")
+
+[node name="Ceiling" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.999, 0)
+mesh = SubResource("PlaneMesh_76pcp")
+
+[node name="Goal" parent="." instance=ExtResource("16_6cw4v")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.88024, 1.57502, -1.99288)
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_76pcp")
+volume_db = -10.4
+autoplay = true

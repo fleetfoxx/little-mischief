@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://sh0yrbeqldrr"]
+
+[ext_resource type="Script" uid="uid://py14a8wjkbf2" path="res://Scenes/Props/ball.gd" id="1_osjd8"]
+[ext_resource type="AudioStream" uid="uid://yil86vk70wg8" path="res://SFX/ZapSplat/zapsplat_sport_basket_ball_bounce_x1_on_grass_002_71143.mp3" id="2_1rh6h"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xl2jv"]
+friction = 0.5
+bounce = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xl2jv"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ukx1s"]
+material = SubResource("StandardMaterial3D_xl2jv")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xl2jv"]
+radius = 0.1
+
+[node name="Ball" type="RigidBody3D" node_paths=PackedStringArray("_bounceSFX") groups=["grabbable"]]
+collision_layer = 260
+collision_mask = 15
+physics_material_override = SubResource("PhysicsMaterial_xl2jv")
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_osjd8")
+_bounceSFX = NodePath("BounceSFX")
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_ukx1s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_xl2jv")
+
+[node name="BounceSFX" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_1rh6h")
+volume_db = -17.067
